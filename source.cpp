@@ -1,5 +1,5 @@
-//MaxHeap Creat(int MaxSize);´´½¨Ò»¸ö×î´ó¶Ñ
-//Bool IsFull(MaxHeap H);ÅĞ¶Ï×î´ó¶ÑÊÇ·ñÒÑÂú
+//MaxHeap Creat(int MaxSize);åˆ›å»ºä¸€ä¸ªæœ€å¤§å †
+//Bool IsFull(MaxHeap H);åˆ¤æ–­æœ€å¤§å †æ˜¯å¦å·²æ»¡
 //Insert(MaxHeap H,ElementType X);
 //Bool IsEmpty(MaxHeap H);
 //ElementType DeleteMax(MaxHeap H);
@@ -29,13 +29,13 @@ bool IsEmpty(MaxHeap H) {
 	if (H->size == 0)	return true;
 	else return false;
 }
-//×î´ó¶ÑµÄ²åÈë
-//½«ĞÂÔªËØÖÃÓÚ×îºóÎ»ÖÃ£¬ÔÙ´ÓÏÂÏòÉÏµ÷Õû
-//ÈôÂúÔò·µ»Ø£¬·ñÔò½«ÔªËØÖÃÓÚ×îºóÎ»ÖÃ£¬´ÓÏÂÏòÉÏÓëÆä¸¸Ç×½Úµã±È½Ï£¬Èç¹û¸¸Ç×½ÚµãµÄÖµ±ÈXĞ¡£¬Ôò½«¸¸Ç×±äÎª¶ù×Ó
-//Ö±ÖÁ¸¸Ç×½ÚµãµÄ´óÓÚ¶ù×Ó£¬½«Õâ¸ö¶ù×ÓµÄÖµ¼ÇÎªX
+//æœ€å¤§å †çš„æ’å…¥
+//å°†æ–°å…ƒç´ ç½®äºæœ€åä½ç½®ï¼Œå†ä»ä¸‹å‘ä¸Šè°ƒæ•´
+//è‹¥æ»¡åˆ™è¿”å›ï¼Œå¦åˆ™å°†å…ƒç´ ç½®äºæœ€åä½ç½®ï¼Œä»ä¸‹å‘ä¸Šä¸å…¶çˆ¶äº²èŠ‚ç‚¹æ¯”è¾ƒï¼Œå¦‚æœçˆ¶äº²èŠ‚ç‚¹çš„å€¼æ¯”Xå°ï¼Œåˆ™å°†çˆ¶äº²å˜ä¸ºå„¿å­
+//ç›´è‡³çˆ¶äº²èŠ‚ç‚¹çš„å¤§äºå„¿å­ï¼Œå°†è¿™ä¸ªå„¿å­çš„å€¼è®°ä¸ºX
 void Insert(MaxHeap H, ElementType X) {
 	if (IsFull(H)) {
-		printf("HÒÑÂú£¬²»¿É²åÈë");
+		printf("Hå·²æ»¡ï¼Œä¸å¯æ’å…¥");
 		return;
 	}
 	/*H->data[++H->size] = X;
@@ -54,8 +54,8 @@ void Insert(MaxHeap H, ElementType X) {
 	}
 	H->data[i] = X;
 }
-//×î´ó¶ÑµÄÉ¾³ı
-//½«×î´ó¶ÑµÄ×î´óÔªËØ¼´¸ù½ÚµãÈ¡³ö£¬ÓÃ×îºóÒ»¸öÔªËØÌæ»»£¬×îºó´ÓÉÏÏòÏÂµ÷Õû,Èç¹ûÓöµ½±È×îºóÒ»¸ö½ÚµãĞ¡µÄ£¬¾ÍÍ£Ö¹
+//æœ€å¤§å †çš„åˆ é™¤
+//å°†æœ€å¤§å †çš„æœ€å¤§å…ƒç´ å³æ ¹èŠ‚ç‚¹å–å‡ºï¼Œç”¨æœ€åä¸€ä¸ªå…ƒç´ æ›¿æ¢ï¼Œæœ€åä»ä¸Šå‘ä¸‹è°ƒæ•´,å¦‚æœé‡åˆ°æ¯”æœ€åä¸€ä¸ªèŠ‚ç‚¹å°çš„ï¼Œå°±åœæ­¢
 ElementType DeleteMax(MaxHeap H) {
 	if (IsEmpty(H)) {
 		return H->data[0];
@@ -72,13 +72,39 @@ ElementType DeleteMax(MaxHeap H) {
 			H->data[parent] = H->data[child];
 		}
 		else {
-			break;//×¢Òâ
+			break;//æ³¨æ„
 		}
 	}
-	H->data[parent] = temp;//×¢Òâ
+	H->data[parent] = temp;//æ³¨æ„
 	return result;
 }
-
+//å°†ä¸€ç»„æ•°æ®æ„å»ºä¸ºæœ€å¤§å †
+//1. ç°å°†æ•°æ®æŒ‰è¾“å…¥é¡ºåºå­˜å…¥æœ€å¤§å †æ•°ç»„ä¸­
+//2. ä»size/2ä½ç½®å¼€å§‹åˆ°æ ¹èŠ‚ç‚¹ï¼Œå¯¹æ¯ä¸€ä¸ªèŠ‚ç‚¹è¿›è¡Œå‘ä¸‹è°ƒæ•´
+//å‘ä¸‹è°ƒæ•´çš„ä»£ç å†åˆ é™¤æ“ä½œä¸­å·²ç»å‡ºç°
+//æœ¬å‡½æ•°å‡è®¾å·²ç»åšå®Œç¬¬ä¸€æ­¥
+MaxHeap CreatMaxHeap(MaxHeap H) {
+	if (IsEmpty(H))	return H;
+	int parent, child;
+	ElementType temp;
+	for (int i = H->size / 2; i >= 1; i-- ) {
+		temp = H->data[i];
+		for (parent = H->data[i]; parent*2<= H->size; parent = child) {
+			child = parent * 2;
+			if (H->data[child] < H->data[child + 1]) {
+				child = child + 1;
+			}
+			if (temp > H->data[child]) {
+				H->data[parent] = H->data[child];
+			}
+			else {
+				break;
+			}
+		}
+		H->data[parent] = temp;
+	}
+	return H;
+}
 
 
 
